@@ -1,5 +1,6 @@
 package com.example.githubuserapp
 
+import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -7,6 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 
 class DetailUser : AppCompatActivity() {
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_user)
@@ -26,7 +28,7 @@ class DetailUser : AppCompatActivity() {
         val tvFollowingDetail: TextView = findViewById(R.id.tv_item_following_detail)
 
         tvNameDetail.text = data?.name.toString().trim()
-        tvUsernameDetail.text = "@" + data?.username.toString().trim()
+        tvUsernameDetail.text = data?.username.toString().trim()
         tvCompanyDetail.text = data?.company.toString().trim()
         tvLocationDetail.text = data?.location.toString().trim()
         tvRepositoryDetail.text = data?.repository.toString().trim()
