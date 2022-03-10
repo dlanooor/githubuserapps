@@ -6,16 +6,19 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.githubuserapp.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     private lateinit var rvUsers: RecyclerView
     private val list = ArrayList<User>()
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        supportActionBar!!.title = "List Users"
+        supportActionBar?.title = "List Users"
 
         rvUsers = findViewById(R.id.rv_users)
         rvUsers.setHasFixedSize(true)
@@ -37,25 +40,35 @@ class MainActivity : AppCompatActivity() {
 
             val listUser = ArrayList<User>()
             for (i in dataName.indices) {
-                val user = User(dataName[i], dataUsername[i], dataLocation[i], dataRepository[i], dataCompany[i], dataFollowers[i], dataFollowing[i], dataPhoto.getResourceId(i, -1))
+                val user = User(
+                    dataName[i],
+                    dataUsername[i],
+                    dataLocation[i],
+                    dataRepository[i],
+                    dataCompany[i],
+                    dataFollowers[i],
+                    dataFollowing[i],
+                    dataPhoto.getResourceId(i, -1)
+                )
                 listUser.add(user)
             }
+            dataPhoto.recycle()
             return listUser
         }
 
     private fun showRecyclerList() {
-        if(applicationContext.resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+        if (applicationContext.resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
             rvUsers.layoutManager = GridLayoutManager(this, 4)
         } else {
             rvUsers.layoutManager = GridLayoutManager(this, 2)
         }
 
-        val listUserAdapter = ListUserAdapter(list)
+        val listUserAdapter = ListUserAdapter(applicationContext, list)
         rvUsers.adapter = listUserAdapter
 
         listUserAdapter.setOnItemClickCallback(object : ListUserAdapter.OnItemClickCallback {
             override fun onItemClicked(data: User) {
-                val intentToDetail = Intent(this@MainActivity, DetailUser::class.java)
+                val intentToDetail = Intent(this@MainActivity, DetailUserActivity::class.java)
                 intentToDetail.putExtra("DATA", data)
                 startActivity(intentToDetail)
             }

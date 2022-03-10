@@ -4,16 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".DetailUser"
-    app:cardCornerRadius="10dp"
-    android:layout_marginLeft="16dp"
-    android:layout_marginTop="16dp"
-    android:layout_marginRight="16dp"
-    android:layout_marginBottom="16dp" >
+    android:layout_margin="16dp"
+    tools:context=".DetailUserActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
         android:background="@color/gray8">
 
         <de.hdodenhof.circleimageview.CircleImageView
@@ -21,49 +18,49 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginTop="16dp"
+            app:civ_border_color="@color/white"
+            app:civ_border_width="2dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:civ_border_width="2dp"
-            app:civ_border_color="@color/white"
             tools:src="@tools:sample/avatars" />
 
         <TextView
             android:id="@+id/tv_item_name_detail"
             style="@style/TextContent.White"
             android:layout_marginTop="16dp"
-            android:text="@string/name"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/im_item_photo_detail" />
+            app:layout_constraintTop_toBottomOf="@+id/im_item_photo_detail"
+            tools:text="@string/name" />
 
         <TextView
             android:id="@+id/tv_item_username_detail"
             style="@style/TextContent.White"
             android:layout_marginTop="4dp"
-            android:text="@string/username"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_item_name_detail" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_item_name_detail"
+            tools:text="@string/username" />
 
         <TextView
             android:id="@+id/tv_item_company_detail"
             style="@style/TextContent.White"
             android:layout_marginTop="4dp"
-            android:text="@string/company"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_item_username_detail" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_item_username_detail"
+            tools:text="@string/company" />
 
         <TextView
             android:id="@+id/tv_item_location_detail"
             style="@style/TextContent.White"
             android:layout_marginTop="4dp"
-            android:text="@string/location"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_item_company_detail" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_item_company_detail"
+            tools:text="@string/location" />
 
         <TextView
             style="@style/TextContent.White.Bold"
@@ -93,27 +90,27 @@
             style="@style/TextContent.White"
             android:layout_marginTop="4dp"
             android:layout_marginBottom="16dp"
-            android:text="@string/_1800"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_item_followers" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_item_followers"
+            tools:text="@string/_1800" />
 
         <TextView
             android:id="@+id/tv_item_following_detail"
             style="@style/TextContent.White"
-            android:text="@string/_500"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/tv_item_followers"
-            app:layout_constraintTop_toTopOf="@+id/tv_item_followers_detail" />
+            app:layout_constraintTop_toTopOf="@+id/tv_item_followers_detail"
+            tools:text="@string/_500" />
 
         <TextView
             android:id="@+id/tv_item_repository_detail"
             style="@style/TextContent.White"
-            android:text="@string/_15"
             app:layout_constraintEnd_toStartOf="@+id/tv_item_followers"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/tv_item_followers_detail" />
+            app:layout_constraintTop_toTopOf="@+id/tv_item_followers_detail"
+            tools:text="@string/_15" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
