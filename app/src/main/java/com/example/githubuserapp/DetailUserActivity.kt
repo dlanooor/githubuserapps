@@ -3,6 +3,7 @@ package com.example.githubuserapp
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
 import com.example.githubuserapp.databinding.ActivityDetailUserBinding
 
 class DetailUserActivity : AppCompatActivity() {
@@ -36,5 +37,11 @@ class DetailUserActivity : AppCompatActivity() {
         if (data != null) {
             binding.imItemPhotoDetail.setImageResource(data.photo)
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        val inflater = menuInflater
+        inflater.inflate(R.menu.option_menu, menu)
+        return true
     }
 }

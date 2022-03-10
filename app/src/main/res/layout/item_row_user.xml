@@ -16,7 +16,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/gray2"
+        android:background="@color/gray8"
         android:padding="8dp">
 
         <de.hdodenhof.circleimageview.CircleImageView
@@ -32,7 +32,7 @@
 
         <TextView
             android:id="@+id/tv_item_name"
-            style="@style/TextContent.Black.Bold"
+            style="@style/TextContent.White.Bold"
             android:layout_marginTop="2dp"
             android:layout_toEndOf="@+id/im_item_photo"
             card_view:layout_constraintEnd_toEndOf="parent"
@@ -42,7 +42,7 @@
 
         <TextView
             android:id="@+id/tv_item_username"
-            style="@style/TextContent.Black"
+            style="@style/TextContent.White"
             android:layout_marginTop="2dp"
             android:layout_marginBottom="2dp"
             android:layout_toEndOf="@+id/im_item_photo"

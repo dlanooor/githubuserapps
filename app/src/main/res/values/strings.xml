@@ -10,6 +10,8 @@
     <string name="_1800">1800</string>
     <string name="_500">500</string>
     <string name="_15">15</string>
+    <string name="setting">Setting</string>
+    <string name="search_username">Search Username</string>
 
     <string-array name="username">
         <item>JakeWharton</item>
