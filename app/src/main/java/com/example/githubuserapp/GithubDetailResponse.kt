@@ -16,12 +16,6 @@ data class GithubDetailResponse(
 	@field:SerializedName("following_url")
 	val followingUrl: String? = null,
 
-//	@field:SerializedName("twitter_username")
-//	val twitterUsername: Any? = null,
-
-//	@field:SerializedName("bio")
-//	val bio: Any? = null,
-
 	@field:SerializedName("created_at")
 	val createdAt: String? = null,
 
@@ -55,14 +49,8 @@ data class GithubDetailResponse(
 	@field:SerializedName("gravatar_id")
 	val gravatarId: String? = null,
 
-//	@field:SerializedName("email")
-//	val email: Any? = null,
-
 	@field:SerializedName("organizations_url")
 	val organizationsUrl: String? = null,
-
-//	@field:SerializedName("hireable")
-//	val hireable: Any? = null,
 
 	@field:SerializedName("starred_url")
 	val starredUrl: String? = null,

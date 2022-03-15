@@ -9,7 +9,6 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.githubuserapp.databinding.ActivityMainBinding
@@ -68,7 +67,6 @@ class MainActivity : AppCompatActivity() {
         searchView.queryHint = resources.getString(R.string.search_username)
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
-                Toast.makeText(this@MainActivity, query, Toast.LENGTH_SHORT).show()
                 searchView.clearFocus()
                 findUser(query)
                 return true
@@ -84,8 +82,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun showRecyclerList(userData: List<ItemsItem>) {
         binding.rvUsers.setHasFixedSize(true)
-
-        println(userData)
 
         if (applicationContext.resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE)
             binding.rvUsers.layoutManager = GridLayoutManager(this, 4)
