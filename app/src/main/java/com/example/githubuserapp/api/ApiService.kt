@@ -1,5 +1,9 @@
-package com.example.githubuserapp
+package com.example.githubuserapp.api
 
+import com.example.githubuserapp.pojo.GithubDetailFollowersResponse
+import com.example.githubuserapp.pojo.GithubDetailFollowingResponse
+import com.example.githubuserapp.pojo.GithubDetailResponse
+import com.example.githubuserapp.pojo.GithubResponse
 import retrofit2.Call
 import retrofit2.http.*
 

@@ -1,4 +1,4 @@
-package com.example.githubuserapp
+package com.example.githubuserapp.activity
 
 import android.app.SearchManager
 import android.content.Context
@@ -6,26 +6,20 @@ import android.content.Intent
 import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.widget.SearchView
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.githubuserapp.pojo.ItemsItem
+import com.example.githubuserapp.adapter.ListUserAdapter
+import com.example.githubuserapp.viewmodel.MainViewModel
+import com.example.githubuserapp.R
 import com.example.githubuserapp.databinding.ActivityMainBinding
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private val mainViewModel by viewModels<MainViewModel>()
-
-    companion object {
-        private const val TAG = "MainActivity"
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,12 +28,12 @@ class MainActivity : AppCompatActivity() {
 
         supportActionBar?.title = "Github User's Search"
 
-        mainViewModel.usersData.observe(this, { usersData->
+        mainViewModel.usersData.observe(this) { usersData ->
             showRecyclerList(usersData)
-        })
-        mainViewModel.isLoading.observe(this, {
+        }
+        mainViewModel.isLoading.observe(this) {
             showLoading(it)
-        })
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

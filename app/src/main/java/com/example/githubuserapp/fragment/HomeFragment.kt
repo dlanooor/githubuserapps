@@ -1,4 +1,4 @@
-package com.example.githubuserapp
+package com.example.githubuserapp.fragment
 
 import android.content.ContentValues
 import android.content.Context
@@ -10,7 +10,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.githubuserapp.R
+import com.example.githubuserapp.adapter.ListFollowingAdapter
+import com.example.githubuserapp.api.ApiConfig
 import com.example.githubuserapp.databinding.FragmentHomeBinding
+import com.example.githubuserapp.pojo.GithubDetailFollowingResponse
+import com.example.githubuserapp.pojo.GithubDetailFollowingResponseItem
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

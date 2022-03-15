@@ -1,5 +1,6 @@
-package com.example.githubuserapp
+package com.example.githubuserapp.api
 
+import com.example.githubuserapp.BuildConfig
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit

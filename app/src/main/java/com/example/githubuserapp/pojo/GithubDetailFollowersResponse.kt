@@ -1,4 +1,4 @@
-package com.example.githubuserapp
+package com.example.githubuserapp.pojo
 
 import com.google.gson.annotations.SerializedName
 

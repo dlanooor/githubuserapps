@@ -1,4 +1,4 @@
-package com.example.githubuserapp
+package com.example.githubuserapp.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -8,6 +8,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.githubuserapp.R
+import com.example.githubuserapp.pojo.ItemsItem
 
 class ListUserAdapter(private val context: Context, private val listUser: ArrayList<ItemsItem>) :
     RecyclerView.Adapter<ListUserAdapter.ListViewHolder>() {

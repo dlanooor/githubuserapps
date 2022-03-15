@@ -1,4 +1,4 @@
-package com.example.githubuserapp
+package com.example.githubuserapp.activity
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,6 +6,7 @@ import android.os.Handler
 import android.os.Looper
 import android.view.WindowManager.LayoutParams.FLAG_FULLSCREEN
 import androidx.appcompat.app.AppCompatActivity
+import com.example.githubuserapp.R
 
 class SplashActivity : AppCompatActivity() {
 
