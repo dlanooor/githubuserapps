@@ -9,7 +9,10 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.View
+import androidx.activity.viewModels
 import androidx.appcompat.widget.SearchView
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.githubuserapp.databinding.ActivityMainBinding
 import retrofit2.Call
@@ -18,6 +21,7 @@ import retrofit2.Response
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
+    private val mainViewModel by viewModels<MainViewModel>()
 
     companion object {
         private const val TAG = "MainActivity"
@@ -29,30 +33,12 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         supportActionBar?.title = "Github User's Search"
-    }
 
-    private fun findUser(username: String) {
-        showLoading(true)
-        val client = ApiConfig.getApiService().getUser(username)
-        client.enqueue(object : Callback<GithubResponse> {
-            override fun onResponse(
-                call: Call<GithubResponse>,
-                response: Response<GithubResponse>
-            ) {
-                showLoading(false)
-                if (response.isSuccessful) {
-                    val responseBody = response.body()
-                    if (responseBody != null)
-                        showRecyclerList(responseBody.items as List<ItemsItem>)
-                } else {
-                    Log.e(TAG, "onFailure: ${response.message()}")
-                }
-            }
-
-            override fun onFailure(call: Call<GithubResponse>, t: Throwable) {
-                showLoading(false)
-                Log.e(TAG, "onFailure: ${t.message}")
-            }
+        mainViewModel.usersData.observe(this, { usersData->
+            showRecyclerList(usersData)
+        })
+        mainViewModel.isLoading.observe(this, {
+            showLoading(it)
         })
     }
 
@@ -68,7 +54,7 @@ class MainActivity : AppCompatActivity() {
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
                 searchView.clearFocus()
-                findUser(query)
+                mainViewModel.findUser(query)
                 return true
             }
 
