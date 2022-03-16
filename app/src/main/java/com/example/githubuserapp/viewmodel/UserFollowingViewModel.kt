@@ -18,13 +18,18 @@ class UserFollowingFollowersViewModel : ViewModel() {
     private val _userFollowers = MutableLiveData<List<GithubDetailFollowingFollowersResponseItem>>()
     val userFollowers: LiveData<List<GithubDetailFollowingFollowersResponseItem>> = _userFollowers
 
+    private val _isLoading = MutableLiveData<Boolean>()
+    val isLoading: LiveData<Boolean> = _isLoading
+
     fun findUserFollowing(username: String) {
+        _isLoading.value = true
         val client = ApiConfig.getApiService().getUserDetailFollowing(username)
         client.enqueue(object : Callback<List<GithubDetailFollowingFollowersResponseItem>> {
             override fun onResponse(
                 call: Call<List<GithubDetailFollowingFollowersResponseItem>>,
                 response: Response<List<GithubDetailFollowingFollowersResponseItem>>
             ) {
+                _isLoading.value = false
                 if (response.isSuccessful) {
                     _userFollowing.value =
                         response.body() as List<GithubDetailFollowingFollowersResponseItem>
@@ -36,18 +41,21 @@ class UserFollowingFollowersViewModel : ViewModel() {
                 call: Call<List<GithubDetailFollowingFollowersResponseItem>>,
                 t: Throwable
             ) {
+                _isLoading.value = false
                 Log.e(ContentValues.TAG, "onFailure : ${t.message}")
             }
         })
     }
 
     fun findUserFollowers(username: String) {
+        _isLoading.value = true
         val client = ApiConfig.getApiService().getUserDetailFollowers(username)
         client.enqueue(object : Callback<List<GithubDetailFollowingFollowersResponseItem>> {
             override fun onResponse(
                 call: Call<List<GithubDetailFollowingFollowersResponseItem>>,
                 response: Response<List<GithubDetailFollowingFollowersResponseItem>>
             ) {
+                _isLoading.value = false
                 if (response.isSuccessful) {
                     _userFollowers.value =
                         response.body() as List<GithubDetailFollowingFollowersResponseItem>
@@ -59,6 +67,7 @@ class UserFollowingFollowersViewModel : ViewModel() {
                 call: Call<List<GithubDetailFollowingFollowersResponseItem>>,
                 t: Throwable
             ) {
+                _isLoading.value = false
                 Log.e(ContentValues.TAG, "onFailure : ${t.message}")
             }
         })

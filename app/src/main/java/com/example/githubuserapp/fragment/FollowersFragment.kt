@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -33,6 +34,9 @@ class FollowersFragment : Fragment() {
         userFollowingFollowersViewModel.userFollowers.observe(viewLifecycleOwner) { userFollowers ->
             showFollowingRecyclerList(userFollowers)
         }
+        userFollowingFollowersViewModel.isLoading.observe(viewLifecycleOwner) {
+            showLoading(it)
+        }
     }
 
     companion object {
@@ -50,5 +54,14 @@ class FollowersFragment : Fragment() {
 
         val listFollowersAdapter = ListFollowingFollowersAdapter(context as Context, usersFollowers)
         rvUserDetailFollowers.adapter = listFollowersAdapter
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        val progressBar =
+            requireView().findViewById(R.id.progressBarFollowers) as ProgressBar
+        if (isLoading)
+            progressBar.visibility = View.VISIBLE
+        else
+            progressBar.visibility = View.GONE
     }
 }
