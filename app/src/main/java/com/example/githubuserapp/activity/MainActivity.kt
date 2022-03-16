@@ -70,7 +70,7 @@ class MainActivity : AppCompatActivity() {
 
         val usersData = ArrayList<ItemsItem>()
         usersData.addAll(userData)
-        val listUserAdapter = ListUserAdapter(applicationContext, usersData)
+        val listUserAdapter = ListUserAdapter(usersData)
         binding.rvUsers.adapter = listUserAdapter
 
         listUserAdapter.setOnItemClickCallback(object : ListUserAdapter.OnItemClickCallback {

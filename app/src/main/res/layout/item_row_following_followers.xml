@@ -34,7 +34,6 @@
             android:id="@+id/tv_item_username_following_followers"
             style="@style/TextContent.White.Bold"
             android:layout_marginStart="16dp"
-            android:layout_toEndOf="@+id/im_item_photo"
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintStart_toEndOf="@+id/im_item_photo_following_followers"
             card_view:layout_constraintTop_toTopOf="@+id/im_item_photo_following_followers"

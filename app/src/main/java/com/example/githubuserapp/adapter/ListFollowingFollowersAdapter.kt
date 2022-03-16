@@ -9,27 +9,26 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.githubuserapp.R
-import com.example.githubuserapp.pojo.GithubDetailFollowingResponseItem
+import com.example.githubuserapp.pojo.GithubDetailFollowingFollowersResponseItem
 
-class ListFollowingAdapter(private val context: Context, private val listFollowing: ArrayList<GithubDetailFollowingResponseItem>)
-    : RecyclerView.Adapter<ListFollowingAdapter.ListViewHolder>() {
+class ListFollowingFollowersAdapter(
+    private val context: Context,
+    private val listFollowingFollowers: ArrayList<GithubDetailFollowingFollowersResponseItem>
+) : RecyclerView.Adapter<ListFollowingFollowersAdapter.ListViewHolder>() {
 
-    override fun onCreateViewHolder(
-        parent: ViewGroup,
-        viewType: Int
-    ): ListViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
         val view: View =
-            LayoutInflater.from(parent.context).inflate(R.layout.item_row_following_followers, parent, false)
+            LayoutInflater.from(parent.context)
+                .inflate(R.layout.item_row_following_followers, parent, false)
         return ListViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
-        val (_, _, _, _, username, _, _, _, _, _, avatarUrl, _, _, _, _, _, _, _) = listFollowing[position]
-        holder.tvUsername.text = username
-        Glide.with(context).load(avatarUrl).into(holder.imgPhoto)
+        holder.tvUsername.text = listFollowingFollowers[position].login
+        Glide.with(context).load(listFollowingFollowers[position].avatarUrl).into(holder.imgPhoto)
     }
 
-    override fun getItemCount(): Int = listFollowing.size
+    override fun getItemCount(): Int = listFollowingFollowers.size
 
     class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var imgPhoto: ImageView = itemView.findViewById(R.id.im_item_photo_following_followers)

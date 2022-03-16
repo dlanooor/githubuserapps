@@ -12,11 +12,11 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class MainViewModel : ViewModel() {
-    private val _usersData = MutableLiveData<ArrayList<ItemsItem>>()
-    val usersData : LiveData<ArrayList<ItemsItem>> = _usersData
+    private val _usersData = MutableLiveData<List<ItemsItem>>()
+    val usersData: LiveData<List<ItemsItem>> = _usersData
 
     private val _isLoading = MutableLiveData<Boolean>()
-    val isLoading : LiveData<Boolean> = _isLoading
+    val isLoading: LiveData<Boolean> = _isLoading
 
     companion object {
         private const val TAG = "MainViewModel"
@@ -32,7 +32,7 @@ class MainViewModel : ViewModel() {
             ) {
                 _isLoading.value = false
                 if (response.isSuccessful) {
-                    _usersData.value = response.body()?.items as ArrayList<ItemsItem>?
+                    _usersData.value = response.body()?.items as List<ItemsItem>?
                 } else {
                     Log.e(TAG, "onFailure: ${response.message()}")
                 }

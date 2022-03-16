@@ -1,6 +1,5 @@
 package com.example.githubuserapp.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +10,7 @@ import com.bumptech.glide.Glide
 import com.example.githubuserapp.R
 import com.example.githubuserapp.pojo.ItemsItem
 
-class ListUserAdapter(private val context: Context, private val listUser: ArrayList<ItemsItem>) :
+class ListUserAdapter(private val listUser: ArrayList<ItemsItem>) :
     RecyclerView.Adapter<ListUserAdapter.ListViewHolder>() {
     private lateinit var onItemClickCallback: OnItemClickCallback
 
@@ -26,9 +25,8 @@ class ListUserAdapter(private val context: Context, private val listUser: ArrayL
     }
 
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
-        val (_, _, _, _, username, _, _, _, _, _, _, avatarUrl, _, _, _, _, _, _, _) = listUser[position]
-        holder.tvUsername.text = username
-        Glide.with(context).load(avatarUrl).into(holder.imgPhoto)
+        holder.tvUsername.text = listUser[position].login
+        Glide.with(holder.itemView.context).load(listUser[position].avatarUrl).into(holder.imgPhoto)
         holder.itemView.setOnClickListener { onItemClickCallback.onItemClicked(listUser[holder.adapterPosition]) }
     }
 

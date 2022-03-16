@@ -21,6 +21,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 class DetailUserActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDetailUserBinding
+
     private val detailViewModel by viewModels<DetailViewModel>()
 
     companion object {
@@ -51,8 +52,8 @@ class DetailUserActivity : AppCompatActivity() {
             showLoading(it)
         }
 
-
-        val sectionsPagerAdapter = SectionsPagerAdapter(this, data?.login.toString())
+        val sectionsPagerAdapter = SectionsPagerAdapter(this)
+        sectionsPagerAdapter.username = data?.login.toString().trim()
         val viewPager: ViewPager2 = binding.viewPager
         viewPager.adapter = sectionsPagerAdapter
         val tabs: TabLayout = binding.tabs
@@ -73,6 +74,7 @@ class DetailUserActivity : AppCompatActivity() {
             .into(binding.imItemPhotoDetail)
         binding.tvItemNameDetail.text = userDetail?.name
         binding.tvItemUsernameDetail.text = userDetail?.login
+
         if (userDetail?.company.isNullOrBlank())
             binding.tvItemCompanyDetail.visibility = View.GONE
         else

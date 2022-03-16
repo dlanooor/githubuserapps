@@ -13,16 +13,12 @@ import retrofit2.Response
 
 class DetailViewModel : ViewModel() {
     private val _userDetail = MutableLiveData<GithubDetailResponse>()
-    val userDetail : LiveData<GithubDetailResponse> = _userDetail
+    val userDetail: LiveData<GithubDetailResponse> = _userDetail
 
     private val _isLoading = MutableLiveData<Boolean>()
-    val isLoading : LiveData<Boolean> = _isLoading
+    val isLoading: LiveData<Boolean> = _isLoading
 
-    companion object {
-        private const val TAG = "DetailViewModel"
-    }
-
-    fun findUserDetail(username : String) {
+    fun findUserDetail(username: String) {
         _isLoading.value = true
         val client = ApiConfig.getApiService().getUserDetail(username)
         client.enqueue(object : Callback<GithubDetailResponse> {

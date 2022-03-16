@@ -2,13 +2,7 @@ package com.example.githubuserapp.pojo
 
 import com.google.gson.annotations.SerializedName
 
-data class GithubDetailFollowersResponse(
-
-    @field:SerializedName("GithubDetailFollowersResponse")
-    val githubDetailFollowersResponse: List<GithubDetailFollowersResponseItem?>? = null
-)
-
-data class GithubDetailFollowersResponseItem(
+data class GithubDetailFollowingFollowersResponseItem(
 
     @field:SerializedName("gists_url")
     val gistsUrl: String? = null,
@@ -23,7 +17,7 @@ data class GithubDetailFollowersResponseItem(
     val starredUrl: String? = null,
 
     @field:SerializedName("login")
-    val login: String? = null,
+    var login: String? = null,
 
     @field:SerializedName("followers_url")
     val followersUrl: String? = null,
