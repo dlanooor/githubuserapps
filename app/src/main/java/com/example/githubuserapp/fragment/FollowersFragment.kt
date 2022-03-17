@@ -39,10 +39,6 @@ class FollowersFragment : Fragment() {
         }
     }
 
-    companion object {
-        private const val USERNAME = "username"
-    }
-
     private fun showFollowingRecyclerList(userFollowers: List<GithubDetailFollowingFollowersResponseItem>) {
         val rvUserDetailFollowers =
             requireView().findViewById(R.id.rv_user_detail_followers) as RecyclerView
@@ -63,5 +59,9 @@ class FollowersFragment : Fragment() {
             progressBar.visibility = View.VISIBLE
         else
             progressBar.visibility = View.GONE
+    }
+
+    companion object {
+        private const val USERNAME = "username"
     }
 }

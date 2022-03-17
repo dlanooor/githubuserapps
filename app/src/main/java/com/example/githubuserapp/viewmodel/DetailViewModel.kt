@@ -27,10 +27,12 @@ class DetailViewModel : ViewModel() {
                 response: Response<GithubDetailResponse>
             ) {
                 _isLoading.value = false
-                if (response.isSuccessful)
+                if (response.isSuccessful) {
                     _userDetail.value = response.body()
-                else
+                }
+                else {
                     Log.e(ContentValues.TAG, "onFailure : ${response.message()}")
+                }
             }
 
             override fun onFailure(call: Call<GithubDetailResponse>, t: Throwable) {

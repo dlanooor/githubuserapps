@@ -10,10 +10,6 @@ import com.example.githubuserapp.R
 
 class SplashActivity : AppCompatActivity() {
 
-    companion object {
-        private const val THREE_SECOND = 3000L
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
@@ -27,5 +23,9 @@ class SplashActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }, THREE_SECOND)
+    }
+
+    companion object {
+        private const val THREE_SECOND = 3000L
     }
 }

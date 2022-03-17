@@ -18,10 +18,6 @@ class MainViewModel : ViewModel() {
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
 
-    companion object {
-        private const val TAG = "MainViewModel"
-    }
-
     fun findUser(username: String) {
         _isLoading.value = true
         val client = ApiConfig.getApiService().getUser(username)
@@ -43,5 +39,9 @@ class MainViewModel : ViewModel() {
                 Log.e(TAG, "onFailure: ${t.message}")
             }
         })
+    }
+
+    companion object {
+        private const val TAG = "MainViewModel"
     }
 }

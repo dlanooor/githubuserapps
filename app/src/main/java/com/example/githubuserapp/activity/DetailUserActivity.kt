@@ -24,16 +24,6 @@ class DetailUserActivity : AppCompatActivity() {
 
     private val detailViewModel by viewModels<DetailViewModel>()
 
-    companion object {
-        private const val DATA = "DATA"
-
-        @StringRes
-        private val TAB_TITLES = intArrayOf(
-            R.string.tab_text_1,
-            R.string.tab_text_2,
-        )
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailUserBinding.inflate(layoutInflater)
@@ -70,24 +60,33 @@ class DetailUserActivity : AppCompatActivity() {
     }
 
     private fun setUserDetail(userDetail: GithubDetailResponse?) {
-        Glide.with(this@DetailUserActivity).load(userDetail?.avatarUrl)
-            .into(binding.imItemPhotoDetail)
-        binding.tvItemNameDetail.text = userDetail?.name
-        binding.tvItemUsernameDetail.text = userDetail?.login
+        binding.apply {
+            userDetail?.apply {
+                Glide.with(this@DetailUserActivity).load(userDetail.avatarUrl)
+                    .into(binding.imItemPhotoDetail)
 
-        if (userDetail?.company.isNullOrBlank())
-            binding.tvItemCompanyDetail.visibility = View.GONE
-        else
-            binding.tvItemCompanyDetail.text = userDetail?.company
+                tvItemNameDetail.text = userDetail.name
+                tvItemUsernameDetail.text = userDetail.login
 
-        if (userDetail?.location.isNullOrBlank())
-            binding.tvItemLocationDetail.visibility = View.GONE
-        else
-            binding.tvItemLocationDetail.text = userDetail?.location
+                if (userDetail.company.isNullOrBlank()) {
+                    tvItemCompanyDetail.visibility = View.GONE
+                }
+                else {
+                    tvItemCompanyDetail.text = userDetail.company
+                }
 
-        binding.tvItemRepositoryDetail.text = userDetail?.publicRepos.toString()
-        binding.tvItemFollowersDetail.text = userDetail?.followers.toString()
-        binding.tvItemFollowingDetail.text = userDetail?.following.toString()
+                if (userDetail.location.isNullOrBlank()) {
+                    tvItemLocationDetail.visibility = View.GONE
+                }
+                else {
+                    tvItemLocationDetail.text = userDetail.location
+                }
+
+                tvItemRepositoryDetail.text = userDetail.publicRepos.toString()
+                tvItemFollowersDetail.text = userDetail.followers.toString()
+                tvItemFollowingDetail.text = userDetail.following.toString()
+            }
+        }
     }
 
     private fun showLoading(isLoading: Boolean) {
@@ -95,5 +94,15 @@ class DetailUserActivity : AppCompatActivity() {
             binding.progressBarDetail.visibility = View.VISIBLE
         else
             binding.progressBarDetail.visibility = View.GONE
+    }
+
+    companion object {
+        private const val DATA = "DATA"
+
+        @StringRes
+        private val TAB_TITLES = intArrayOf(
+            R.string.tab_text_1,
+            R.string.tab_text_2,
+        )
     }
 }

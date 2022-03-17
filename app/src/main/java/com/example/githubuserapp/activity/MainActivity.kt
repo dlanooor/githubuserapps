@@ -61,31 +61,35 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showRecyclerList(userData: List<ItemsItem>) {
-        binding.rvUsers.setHasFixedSize(true)
+        binding.apply {
+            rvUsers.setHasFixedSize(true)
 
-        if (applicationContext.resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE)
-            binding.rvUsers.layoutManager = GridLayoutManager(this, 4)
-        else
-            binding.rvUsers.layoutManager = GridLayoutManager(this, 2)
+            if (applicationContext.resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE)
+                rvUsers.layoutManager = GridLayoutManager(this@MainActivity, 4)
+            else
+                rvUsers.layoutManager = GridLayoutManager(this@MainActivity, 2)
 
-        val usersData = ArrayList<ItemsItem>()
-        usersData.addAll(userData)
-        val listUserAdapter = ListUserAdapter(usersData)
-        binding.rvUsers.adapter = listUserAdapter
+            val usersData = ArrayList<ItemsItem>()
+            usersData.addAll(userData)
+            val listUserAdapter = ListUserAdapter(usersData)
+            rvUsers.adapter = listUserAdapter
 
-        listUserAdapter.setOnItemClickCallback(object : ListUserAdapter.OnItemClickCallback {
-            override fun onItemClicked(data: ItemsItem) {
-                val intentToDetail = Intent(this@MainActivity, DetailUserActivity::class.java)
-                intentToDetail.putExtra("DATA", data)
-                startActivity(intentToDetail)
-            }
-        })
+            listUserAdapter.setOnItemClickCallback(object : ListUserAdapter.OnItemClickCallback {
+                override fun onItemClicked(data: ItemsItem) {
+                    val intentToDetail = Intent(this@MainActivity, DetailUserActivity::class.java)
+                    intentToDetail.putExtra("DATA", data)
+                    startActivity(intentToDetail)
+                }
+            })
+        }
     }
 
     private fun showLoading(isLoading: Boolean) {
-        if (isLoading)
+        if (isLoading) {
             binding.progressBar.visibility = View.VISIBLE
-        else
+        }
+        else {
             binding.progressBar.visibility = View.GONE
+        }
     }
 }
