@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">GitHubUserApp</string>
+    <string name="name">Name</string>
+    <string name="username">Username</string>
+    <string name="company">Company</string>
+    <string name="location">Location</string>
+    <string name="repository">Repository</string>
+    <string name="followers">Followers</string>
+    <string name="following">Following</string>
+    <string name="_1800">1800</string>
+    <string name="_500">500</string>
+    <string name="_15">15</string>
+    <string name="setting">Setting</string>
+    <string name="search_username">Search Username</string>
+    <string name="tab_text_1">Followers</string>
+    <string name="tab_text_2">Following</string>
+    <string name="content_tab_text">This is Tab %1$d</string>
+    <string name="favourite">Favourite</string>
+    <string name="dark_mode">Dark Mode</string>
+</resources>
