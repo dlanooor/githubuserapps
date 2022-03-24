@@ -13,15 +13,20 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.githubuserapp.R
 import com.example.githubuserapp.ui.adapter.ListFollowingFollowersAdapter
 import com.example.githubuserapp.data.remote.pojo.GithubDetailFollowingFollowersResponseItem
+import com.example.githubuserapp.databinding.FragmentFollowersBinding
 import com.example.githubuserapp.ui.viewmodel.UserFollowingFollowersViewModel
 
 class FollowersFragment : Fragment() {
+
+    private var _binding: FragmentFollowersBinding? = null
+    private val binding get() = _binding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_followers, container, false)
+        _binding = FragmentFollowersBinding.inflate(layoutInflater, container, false)
+        return binding?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -41,25 +46,26 @@ class FollowersFragment : Fragment() {
     }
 
     private fun showFollowingRecyclerList(userFollowers: List<GithubDetailFollowingFollowersResponseItem>) {
-        val rvUserDetailFollowers =
-            requireView().findViewById(R.id.rv_user_detail_followers) as RecyclerView
-        rvUserDetailFollowers.setHasFixedSize(true)
-        rvUserDetailFollowers.layoutManager = GridLayoutManager(context, 1)
-
         val usersFollowers = ArrayList<GithubDetailFollowingFollowersResponseItem>()
         usersFollowers.addAll(userFollowers)
 
         val listFollowersAdapter = ListFollowingFollowersAdapter(context as Context, usersFollowers)
-        rvUserDetailFollowers.adapter = listFollowersAdapter
+
+        binding?.rvUserDetailFollowers?.apply {
+            setHasFixedSize(true)
+            layoutManager = GridLayoutManager(context, 1)
+            adapter = listFollowersAdapter
+        }
     }
 
     private fun showLoading(isLoading: Boolean) {
-        val progressBar =
-            requireView().findViewById(R.id.progressBarFollowers) as ProgressBar
-        if (isLoading)
-            progressBar.visibility = View.VISIBLE
-        else
-            progressBar.visibility = View.GONE
+        binding?.progressBarFollowers?.apply {
+            if (isLoading) {
+                visibility = View.VISIBLE
+            } else {
+                visibility = View.GONE
+            }
+        }
     }
 
     companion object {
