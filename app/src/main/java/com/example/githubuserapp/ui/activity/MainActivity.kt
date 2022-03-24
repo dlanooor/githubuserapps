@@ -122,11 +122,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showLoading(isLoading: Boolean) {
-        if (isLoading) {
-            binding.progressBar.visibility = View.VISIBLE
-        }
-        else {
-            binding.progressBar.visibility = View.GONE
+        binding.progressBar.apply {
+            if (isLoading) {
+                visibility = View.VISIBLE
+            } else {
+                visibility = View.GONE
+            }
         }
     }
 }

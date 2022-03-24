@@ -9,6 +9,7 @@ import android.view.MenuItem
 import android.view.View
 import androidx.activity.viewModels
 import androidx.annotation.StringRes
+import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.example.githubuserapp.*
@@ -17,6 +18,8 @@ import com.example.githubuserapp.databinding.ActivityDetailUserBinding
 import com.example.githubuserapp.data.remote.pojo.GithubDetailResponse
 import com.example.githubuserapp.data.remote.pojo.ItemsItem
 import com.example.githubuserapp.ui.viewmodel.DetailViewModel
+import com.example.githubuserapp.ui.viewmodel.FavouriteUserViewModel
+import com.example.githubuserapp.ui.viewmodel.ViewModelRoomFactory
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
@@ -24,7 +27,7 @@ class DetailUserActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDetailUserBinding
 
-    private val detailViewModel by viewModels<DetailViewModel>()
+    private lateinit var detailViewModel : DetailViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,6 +38,8 @@ class DetailUserActivity : AppCompatActivity() {
 
         val data = intent.getParcelableExtra<ItemsItem>(DATA)
         Log.d("Detail Data", data?.login.toString())
+
+        detailViewModel = obtainViewModel(this@DetailUserActivity)
 
         detailViewModel.findUserDetail(data?.login.toString().trim())
         detailViewModel.userDetail.observe(this) { userDetail ->
@@ -75,6 +80,11 @@ class DetailUserActivity : AppCompatActivity() {
             }
             else -> return true
         }
+    }
+
+    private fun obtainViewModel(activity: AppCompatActivity): DetailViewModel {
+        val factory = ViewModelRoomFactory.getInstance(activity.application)
+        return ViewModelProvider(activity, factory).get(DetailViewModel::class.java)
     }
 
     private fun setUserDetail(userDetail: GithubDetailResponse?) {
