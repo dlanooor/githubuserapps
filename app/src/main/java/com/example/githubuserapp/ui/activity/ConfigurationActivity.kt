@@ -1,4 +1,4 @@
-package com.example.githubuserapp.activity
+package com.example.githubuserapp.ui.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -7,8 +7,8 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.ViewModelProvider
 import com.example.githubuserapp.databinding.ActivityConfigurationBinding
 import com.example.githubuserapp.other.SettingPreferences
-import com.example.githubuserapp.viewmodel.ConfigurationViewModel
-import com.example.githubuserapp.viewmodel.ViewModelFactory
+import com.example.githubuserapp.ui.viewmodel.ConfigurationViewModel
+import com.example.githubuserapp.ui.viewmodel.ViewModelFactory
 
 class ConfigurationActivity : AppCompatActivity() {
     private lateinit var binding: ActivityConfigurationBinding

@@ -14,13 +14,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GitHubUserApp">
         <activity
-            android:name=".activity.ConfigurationActivity"
+            android:name="com.example.githubuserapp.ui.activity.ConfigurationActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.FavouriteUserActivity"
+            android:name="com.example.githubuserapp.ui.activity.FavouriteUserActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.SplashActivity"
+            android:name="com.example.githubuserapp.ui.activity.SplashActivity"
             android:exported="true"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
@@ -30,10 +30,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.DetailUserActivity"
+            android:name="com.example.githubuserapp.ui.activity.DetailUserActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.MainActivity"
+            android:name="com.example.githubuserapp.ui.activity.MainActivity"
             android:exported="true" />
     </application>
 

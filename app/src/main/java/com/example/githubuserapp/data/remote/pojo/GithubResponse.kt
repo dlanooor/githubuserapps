@@ -1,8 +1,23 @@
-package com.example.githubuserapp.pojo
+package com.example.githubuserapp.data.remote.pojo
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
-data class GithubDetailFollowingFollowersResponseItem(
+data class GithubResponse(
+
+    @field:SerializedName("total_count")
+    val totalCount: Int? = null,
+
+    @field:SerializedName("incomplete_results")
+    val incompleteResults: Boolean? = null,
+
+    @field:SerializedName("items")
+    val items: List<ItemsItem?>? = null
+)
+
+@Parcelize
+data class ItemsItem(
 
     @field:SerializedName("gists_url")
     val gistsUrl: String? = null,
@@ -17,7 +32,7 @@ data class GithubDetailFollowingFollowersResponseItem(
     val starredUrl: String? = null,
 
     @field:SerializedName("login")
-    var login: String? = null,
+    val login: String? = null,
 
     @field:SerializedName("followers_url")
     val followersUrl: String? = null,
@@ -30,6 +45,9 @@ data class GithubDetailFollowingFollowersResponseItem(
 
     @field:SerializedName("subscriptions_url")
     val subscriptionsUrl: String? = null,
+
+    @field:SerializedName("score")
+    val score: Double? = null,
 
     @field:SerializedName("received_events_url")
     val receivedEventsUrl: String? = null,
@@ -57,4 +75,4 @@ data class GithubDetailFollowingFollowersResponseItem(
 
     @field:SerializedName("organizations_url")
     val organizationsUrl: String? = null
-)
+) : Parcelable

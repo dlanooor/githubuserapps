@@ -1,20 +1,22 @@
-package com.example.githubuserapp.activity
+package com.example.githubuserapp.ui.activity
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import androidx.activity.viewModels
 import androidx.annotation.StringRes
 import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.example.githubuserapp.*
-import com.example.githubuserapp.adapter.SectionsPagerAdapter
+import com.example.githubuserapp.ui.adapter.SectionsPagerAdapter
 import com.example.githubuserapp.databinding.ActivityDetailUserBinding
-import com.example.githubuserapp.pojo.GithubDetailResponse
-import com.example.githubuserapp.pojo.ItemsItem
-import com.example.githubuserapp.viewmodel.DetailViewModel
+import com.example.githubuserapp.data.remote.pojo.GithubDetailResponse
+import com.example.githubuserapp.data.remote.pojo.ItemsItem
+import com.example.githubuserapp.ui.viewmodel.DetailViewModel
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
@@ -57,6 +59,22 @@ class DetailUserActivity : AppCompatActivity() {
         inflater.inflate(R.menu.option_menu, menu)
         menu.findItem(R.id.search_username).isVisible = false
         return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.menu_favourite -> {
+                val i = Intent(this, FavouriteUserActivity::class.java)
+                startActivity(i)
+                return true
+            }
+            R.id.menu_settings -> {
+                val i = Intent(this, ConfigurationActivity::class.java)
+                startActivity(i)
+                return true
+            }
+            else -> return true
+        }
     }
 
     private fun setUserDetail(userDetail: GithubDetailResponse?) {

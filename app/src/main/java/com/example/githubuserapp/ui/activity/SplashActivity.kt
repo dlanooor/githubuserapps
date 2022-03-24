@@ -1,4 +1,4 @@
-package com.example.githubuserapp.activity
+package com.example.githubuserapp.ui.activity
 
 import android.content.Intent
 import android.os.Bundle

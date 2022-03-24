@@ -1,6 +1,6 @@
-package com.example.githubuserapp.api
+package com.example.githubuserapp.data.remote.api
 
-import com.example.githubuserapp.pojo.*
+import com.example.githubuserapp.data.remote.pojo.*
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -11,19 +11,16 @@ interface ApiService {
     ): Call<GithubResponse>
 
     @GET("users/{username}")
-    @Headers("Authorization: token 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")
     fun getUserDetail(
         @Path("username") username: String
     ): Call<GithubDetailResponse>
 
     @GET("users/{username}/followers")
-    @Headers("Authorization: token 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")
     fun getUserDetailFollowers(
         @Path("username") username: String
     ): Call<List<GithubDetailFollowingFollowersResponseItem>>
 
     @GET("users/{username}/following")
-    @Headers("Authorization: token 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")
     fun getUserDetailFollowing(
         @Path("username") username: String
     ): Call<List<GithubDetailFollowingFollowersResponseItem>>

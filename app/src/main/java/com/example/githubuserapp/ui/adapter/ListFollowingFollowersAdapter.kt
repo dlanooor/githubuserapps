@@ -1,4 +1,4 @@
-package com.example.githubuserapp.adapter
+package com.example.githubuserapp.ui.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -9,7 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.githubuserapp.R
-import com.example.githubuserapp.pojo.GithubDetailFollowingFollowersResponseItem
+import com.example.githubuserapp.data.remote.pojo.GithubDetailFollowingFollowersResponseItem
 
 class ListFollowingFollowersAdapter(
     private val context: Context,

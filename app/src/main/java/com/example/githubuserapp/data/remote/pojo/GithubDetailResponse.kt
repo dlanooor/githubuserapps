@@ -1,4 +1,4 @@
-package com.example.githubuserapp.pojo
+package com.example.githubuserapp.data.remote.pojo
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName

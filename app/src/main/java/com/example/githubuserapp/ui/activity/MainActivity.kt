@@ -1,4 +1,4 @@
-package com.example.githubuserapp.activity
+package com.example.githubuserapp.ui.activity
 
 import android.app.SearchManager
 import android.content.Context
@@ -16,13 +16,13 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.githubuserapp.pojo.ItemsItem
-import com.example.githubuserapp.adapter.ListUserAdapter
-import com.example.githubuserapp.viewmodel.MainViewModel
+import com.example.githubuserapp.data.remote.pojo.ItemsItem
+import com.example.githubuserapp.ui.adapter.ListUserAdapter
+import com.example.githubuserapp.ui.viewmodel.MainViewModel
 import com.example.githubuserapp.R
 import com.example.githubuserapp.databinding.ActivityMainBinding
 import com.example.githubuserapp.other.SettingPreferences
-import com.example.githubuserapp.viewmodel.ViewModelFactory
+import com.example.githubuserapp.ui.viewmodel.ViewModelFactory
 
 val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
 

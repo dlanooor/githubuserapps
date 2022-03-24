@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:padding="16dp"
     android:background="@color/gray2"
-    tools:context=".activity.FavouriteUserActivity">
+    tools:context=".ui.activity.FavouriteUserActivity">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_favourite_users"

@@ -1,12 +1,11 @@
-package com.example.githubuserapp.viewmodel
+package com.example.githubuserapp.ui.viewmodel
 
 import android.util.Log
 import androidx.lifecycle.*
-import com.example.githubuserapp.api.ApiConfig
+import com.example.githubuserapp.data.remote.api.ApiConfig
 import com.example.githubuserapp.other.SettingPreferences
-import com.example.githubuserapp.pojo.GithubResponse
-import com.example.githubuserapp.pojo.ItemsItem
-import kotlinx.coroutines.launch
+import com.example.githubuserapp.data.remote.pojo.GithubResponse
+import com.example.githubuserapp.data.remote.pojo.ItemsItem
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

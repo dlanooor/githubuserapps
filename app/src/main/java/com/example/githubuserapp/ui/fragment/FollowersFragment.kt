@@ -1,4 +1,4 @@
-package com.example.githubuserapp.fragment
+package com.example.githubuserapp.ui.fragment
 
 import android.content.Context
 import android.os.Bundle
@@ -11,10 +11,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.githubuserapp.R
-import com.example.githubuserapp.adapter.ListFollowingFollowersAdapter
-import com.example.githubuserapp.databinding.ActivityMainBinding
-import com.example.githubuserapp.pojo.GithubDetailFollowingFollowersResponseItem
-import com.example.githubuserapp.viewmodel.UserFollowingFollowersViewModel
+import com.example.githubuserapp.ui.adapter.ListFollowingFollowersAdapter
+import com.example.githubuserapp.data.remote.pojo.GithubDetailFollowingFollowersResponseItem
+import com.example.githubuserapp.ui.viewmodel.UserFollowingFollowersViewModel
 
 class FollowersFragment : Fragment() {
 
