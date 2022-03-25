@@ -13,11 +13,12 @@ class FavouriteUserAdapter : RecyclerView.Adapter<FavouriteUserAdapter.Favourite
     private val listFavouriteUser = ArrayList<FavouriteUserEntity>()
 
     fun setListFavouriteUser(listFavouriteUser: List<FavouriteUserEntity>) {
+        println(listFavouriteUser)
         val diffCallback = FavouriteUserDiffCallback(this.listFavouriteUser, listFavouriteUser)
-        val diffResult = DiffUtil.calculateDiff(diffCallback)
         this.listFavouriteUser.clear()
         this.listFavouriteUser.addAll(listFavouriteUser)
-        diffResult.dispatchUpdatesTo(this)
+        notifyDataSetChanged()
+//        diffResult.dispatchUpdatesTo(this)
     }
 
     override fun onCreateViewHolder(

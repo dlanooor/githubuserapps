@@ -1,21 +1,15 @@
 package com.example.githubuserapp.ui.activity
 
 import android.content.Intent
-import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.githubuserapp.R
-import com.example.githubuserapp.data.local.entity.FavouriteUserEntity
-import com.example.githubuserapp.data.remote.pojo.ItemsItem
 import com.example.githubuserapp.databinding.ActivityFavouriteUserBinding
 import com.example.githubuserapp.ui.adapter.FavouriteUserAdapter
-import com.example.githubuserapp.ui.adapter.ListUserAdapter
 import com.example.githubuserapp.ui.viewmodel.FavouriteUserViewModel
 import com.example.githubuserapp.ui.viewmodel.ViewModelRoomFactory
 
@@ -29,29 +23,23 @@ class FavouriteUserActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityFavouriteUserBinding.inflate(layoutInflater)
-        setContentView(binding?.root)
+        setContentView(binding.root)
         supportActionBar?.title = "Favourite User"
 
         //viewModel
         favouriteUserViewModel = obtainViewModel(this@FavouriteUserActivity)
-        favouriteUserViewModel.getFavouriteUsers().observe(this, { favouriteUserList ->
+        favouriteUserViewModel.getFavouriteUsers().observe(this) { favouriteUserList ->
             if (favouriteUserList != null) {
-                println("not null")
                 adapter.setListFavouriteUser(favouriteUserList)
-                println()
             }
-            else {
-                println("null")
-            }
-        })
+        }
 
         adapter = FavouriteUserAdapter()
         binding.apply {
-            rvFavouriteUsers.layoutManager = LinearLayoutManager(this@FavouriteUserActivity)
+            rvFavouriteUsers.layoutManager = GridLayoutManager(this@FavouriteUserActivity, 2)
             rvFavouriteUsers.setHasFixedSize(true)
             rvFavouriteUsers.adapter = adapter
         }
-        println(adapter.itemCount)
 
     }
 

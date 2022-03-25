@@ -27,7 +27,7 @@ class DetailUserActivity : AppCompatActivity() {
 
     private var _activityDetailUserBinding: ActivityDetailUserBinding? = null
     private val binding get() = _activityDetailUserBinding
-    private lateinit var detailViewModel : DetailViewModel
+    private lateinit var detailViewModel: DetailViewModel
 
     private var isFavourite = false
     private var favouriteUser: FavouriteUserEntity? = null
@@ -55,27 +55,27 @@ class DetailUserActivity : AppCompatActivity() {
             tab.text = resources.getString(TAB_TITLES[position])
         }.attach()
 
-
         favouriteUser = intent.getParcelableExtra(EXTRA_USER)
-        isFavourite = true
-
 
         // viewModel
         detailViewModel = obtainViewModel(this@DetailUserActivity)
         detailViewModel.findUserDetail(data?.login.toString().trim())
+        detailViewModel.isLoading.observe(this) { showLoading(it) }
         detailViewModel.userDetail.observe(this) { userDetail ->
             setUserDetail(userDetail)
             username = userDetail.login.toString()
-            favouriteUser = FavouriteUserEntity(username)
             avatarUrl = userDetail.avatarUrl.toString()
-        }
-        detailViewModel.isLoading.observe(this) {
-            showLoading(it)
-        }
 
-        // addFavouriteUser
-        binding?.ibFavouriteUsersNo?.visibility = View.VISIBLE
-        binding?.ibFavouriteUsersYes?.visibility = View.INVISIBLE
+//            if (favouriteUser != null) {
+//                isFavourite = true
+//                binding?.ibFavouriteUsersNo?.visibility = View.INVISIBLE
+//                binding?.ibFavouriteUsersYes?.visibility = View.VISIBLE
+//            } else {
+//                favouriteUser = FavouriteUserEntity(username)
+//                binding?.ibFavouriteUsersNo?.visibility = View.VISIBLE
+//                binding?.ibFavouriteUsersYes?.visibility = View.INVISIBLE
+//            }
+        }
 
         binding?.ibFavouriteUsersNo?.setOnClickListener {
             binding?.ibFavouriteUsersNo?.visibility = View.INVISIBLE
@@ -87,14 +87,14 @@ class DetailUserActivity : AppCompatActivity() {
                 favouriteUser?.isFavourite = true
             }
             detailViewModel.insert(favouriteUser as FavouriteUserEntity)
-            Toast.makeText(this, "Loved", Toast.LENGTH_SHORT). show()
+            Toast.makeText(this, "Loved", Toast.LENGTH_SHORT).show()
         }
 
         binding?.ibFavouriteUsersYes?.setOnClickListener {
             binding?.ibFavouriteUsersYes?.visibility = View.INVISIBLE
             binding?.ibFavouriteUsersNo?.visibility = View.VISIBLE
             detailViewModel.delete(favouriteUser as FavouriteUserEntity)
-            Toast.makeText(this, "Unloved", Toast.LENGTH_SHORT). show()
+            Toast.makeText(this, "Unloved", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -102,6 +102,7 @@ class DetailUserActivity : AppCompatActivity() {
         val inflater = menuInflater
         inflater.inflate(R.menu.option_menu, menu)
         menu.findItem(R.id.search_username).isVisible = false
+        menu.findItem(R.id.menu_favourite).isVisible = false
         return true
     }
 
