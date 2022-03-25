@@ -12,9 +12,6 @@ interface FavouriteUserDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insertFavouriteUser(favouriteUser: FavouriteUserEntity)
 
-    @Update
-    fun updateFavouriteUser(favouriteUser: FavouriteUserEntity)
-
     @Delete
     fun deleteFavouriteUser(favouriteUser: FavouriteUserEntity)
 }

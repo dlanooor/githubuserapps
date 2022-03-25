@@ -19,19 +19,15 @@ class DetailViewModel(application: Application): ViewModel() {
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
 
-//    private val mFavouriteUserRepository: FavouriteUserRepository = FavouriteUserRepository(application)
+    private val mFavouriteUserRepository: FavouriteUserRepository = FavouriteUserRepository(application)
 
-//    fun insert(favouriteUser: FavouriteUserEntity) {
-//        mFavouriteUserRepository.insert(favouriteUser)
-//    }
-//
-//    fun update(favouriteUser: FavouriteUserEntity) {
-//        mFavouriteUserRepository.update(favouriteUser)
-//    }
-//
-//    fun delete(favouriteUser: FavouriteUserEntity) {
-//        mFavouriteUserRepository.delete(favouriteUser)
-//    }
+    fun insert(favouriteUser: FavouriteUserEntity) {
+        mFavouriteUserRepository.insert(favouriteUser)
+    }
+
+    fun delete(favouriteUser: FavouriteUserEntity) {
+        mFavouriteUserRepository.delete(favouriteUser)
+    }
 
     fun findUserDetail(username: String) {
         _isLoading.value = true

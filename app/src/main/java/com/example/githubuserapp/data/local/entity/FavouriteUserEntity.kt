@@ -11,10 +11,10 @@ import kotlinx.parcelize.Parcelize
 data class FavouriteUserEntity(
     @PrimaryKey
     @ColumnInfo(name = "username")
-    val username: String? = null,
+    var username: String,
 
     @ColumnInfo(name = "avatarUrl")
-    val avatarUrl: String? = null,
+    var avatarUrl: String? = null,
 
     @ColumnInfo(name = "isFavourite")
     var isFavourite: Boolean? = null

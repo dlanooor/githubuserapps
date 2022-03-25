@@ -1,59 +1,51 @@
 package com.example.githubuserapp.ui.adapter
 
-import android.annotation.SuppressLint
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
 import com.example.githubuserapp.data.local.entity.FavouriteUserEntity
 import com.example.githubuserapp.databinding.ItemRowUserBinding
+import com.example.githubuserapp.other.FavouriteUserDiffCallback
 
-class FavouriteUserAdapter : ListAdapter<FavouriteUserEntity, FavouriteUserAdapter.FavouriteUserViewHolder>(DIFF_CALLBACK) {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavouriteUserViewHolder {
+class FavouriteUserAdapter : RecyclerView.Adapter<FavouriteUserAdapter.FavouriteUserViewHolder>() {
+    private val listFavouriteUser = ArrayList<FavouriteUserEntity>()
+
+    fun setListFavouriteUser(listFavouriteUser: List<FavouriteUserEntity>) {
+        val diffCallback = FavouriteUserDiffCallback(this.listFavouriteUser, listFavouriteUser)
+        val diffResult = DiffUtil.calculateDiff(diffCallback)
+        this.listFavouriteUser.clear()
+        this.listFavouriteUser.addAll(listFavouriteUser)
+        diffResult.dispatchUpdatesTo(this)
+    }
+
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): FavouriteUserViewHolder {
         val binding = ItemRowUserBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return FavouriteUserViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: FavouriteUserViewHolder, position: Int) {
-        val user = getItem(position)
-        holder.bind(user)
+    override fun onBindViewHolder(
+        holder: FavouriteUserViewHolder,
+        position: Int
+    ) {
+        holder.bind(listFavouriteUser[position])
     }
 
-    class FavouriteUserViewHolder(val binding: ItemRowUserBinding) : RecyclerView.ViewHolder(
-        binding.root
-    ) {
-        fun bind(user: FavouriteUserEntity) {
-            binding.apply {
-                tvItemUsername.text = user.username
-                Glide.with(itemView.context)
-                    .load(user.avatarUrl)
-                    .into(imItemPhoto)
-                // intent belom diimplementasikan
+    override fun getItemCount(): Int {
+        return listFavouriteUser.size
+    }
+
+    inner class FavouriteUserViewHolder(private val binding: ItemRowUserBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(favouriteUserEntity: FavouriteUserEntity) {
+            with(binding) {
+                tvItemUsername.text = favouriteUserEntity.username
+                Glide.with(itemView.context).load(favouriteUserEntity.avatarUrl).into(imItemPhoto)
             }
         }
     }
 
-    companion object {
-        val DIFF_CALLBACK: DiffUtil.ItemCallback<FavouriteUserEntity> =
-            object : DiffUtil.ItemCallback<FavouriteUserEntity>() {
-                override fun areItemsTheSame(
-                    oldItem: FavouriteUserEntity,
-                    newItem: FavouriteUserEntity
-                ): Boolean {
-                    return oldItem.username == newItem.username
-                }
-
-                @SuppressLint("DiffUtilEquals")
-                override fun areContentsTheSame(
-                    oldItem: FavouriteUserEntity,
-                    newItem: FavouriteUserEntity
-                ): Boolean {
-                    return oldItem == newItem
-                }
-            }
-    }
 }

@@ -8,6 +8,7 @@ class ViewModelRoomFactory private constructor(private val mApplication: Applica
     companion object {
         @Volatile
         private var INSTANCE: ViewModelRoomFactory? = null
+
         @JvmStatic
         fun getInstance(application: Application): ViewModelRoomFactory {
             if (INSTANCE == null) {

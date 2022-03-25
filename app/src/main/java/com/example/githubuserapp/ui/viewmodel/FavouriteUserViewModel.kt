@@ -10,17 +10,5 @@ import com.example.githubuserapp.data.remote.pojo.ItemsItem
 class FavouriteUserViewModel(application: Application) : ViewModel() {
     private val mFavouriteUserRepository: FavouriteUserRepository = FavouriteUserRepository(application)
 
-    fun insert(favouriteUser: FavouriteUserEntity) {
-        mFavouriteUserRepository.insert(favouriteUser)
-    }
-
-    fun update(favouriteUser: FavouriteUserEntity) {
-        mFavouriteUserRepository.update(favouriteUser)
-    }
-
-    fun delete(favouriteUser: FavouriteUserEntity) {
-        mFavouriteUserRepository.delete(favouriteUser)
-    }
-
     fun getFavouriteUsers(): LiveData<List<FavouriteUserEntity>> = mFavouriteUserRepository.getFavouriteUsers()
 }
