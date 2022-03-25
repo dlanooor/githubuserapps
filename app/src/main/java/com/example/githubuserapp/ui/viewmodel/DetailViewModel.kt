@@ -29,6 +29,8 @@ class DetailViewModel(application: Application): ViewModel() {
         mFavouriteUserRepository.delete(favouriteUser)
     }
 
+    fun check(username: String): Boolean = mFavouriteUserRepository.check(username)
+
     fun findUserDetail(username: String) {
         _isLoading.value = true
         val client = ApiConfig.getApiService().getUserDetail(username)

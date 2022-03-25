@@ -42,13 +42,11 @@ class DetailUserActivity : AppCompatActivity() {
 
         supportActionBar?.title = "User Detail"
 
-//        val data = intent.getString<ItemsItem>(DATA)
         val data = intent.getStringExtra(DATA)
-//        Log.d("Detail Data", data?.login.toString())
         Log.d("Detail Data", data.toString())
+
         // sectionPager
         val sectionsPagerAdapter = SectionsPagerAdapter(this)
-//        sectionsPagerAdapter.username = data?.login.toString().trim()
         sectionsPagerAdapter.username = data.toString().trim()
         val viewPager: ViewPager2 = binding!!.viewPager
         viewPager.adapter = sectionsPagerAdapter
@@ -61,23 +59,22 @@ class DetailUserActivity : AppCompatActivity() {
 
         // viewModel
         detailViewModel = obtainViewModel(this@DetailUserActivity)
-//        detailViewModel.findUserDetail(data?.login.toString().trim())
         detailViewModel.findUserDetail(data.toString().trim())
         detailViewModel.isLoading.observe(this) { showLoading(it) }
         detailViewModel.userDetail.observe(this) { userDetail ->
             setUserDetail(userDetail)
             username = userDetail.login.toString()
             avatarUrl = userDetail.avatarUrl.toString()
+            favouriteUser = FavouriteUserEntity(username)
 
-//            if (favouriteUser != null) {
-//                isFavourite = true
-//                binding?.ibFavouriteUsersNo?.visibility = View.INVISIBLE
-//                binding?.ibFavouriteUsersYes?.visibility = View.VISIBLE
-//            } else {
-//                favouriteUser = FavouriteUserEntity(username)
-//                binding?.ibFavouriteUsersNo?.visibility = View.VISIBLE
-//                binding?.ibFavouriteUsersYes?.visibility = View.INVISIBLE
-//            }
+            if(detailViewModel.check(username)) {
+                binding?.ibFavouriteUsersNo?.visibility = View.INVISIBLE
+                binding?.ibFavouriteUsersYes?.visibility = View.VISIBLE
+            }
+            else {
+                binding?.ibFavouriteUsersNo?.visibility = View.VISIBLE
+                binding?.ibFavouriteUsersYes?.visibility = View.INVISIBLE
+            }
         }
 
         binding?.ibFavouriteUsersNo?.setOnClickListener {
@@ -89,6 +86,7 @@ class DetailUserActivity : AppCompatActivity() {
                 favouriteUser?.avatarUrl = avatarUrl
                 favouriteUser?.isFavourite = true
             }
+
             detailViewModel.insert(favouriteUser as FavouriteUserEntity)
             Toast.makeText(this, "Loved", Toast.LENGTH_SHORT).show()
         }

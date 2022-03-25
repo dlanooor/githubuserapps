@@ -22,6 +22,7 @@ abstract class FavouriteUserDatabase : RoomDatabase() {
                         context.applicationContext,
                         FavouriteUserDatabase::class.java, "user_database"
                     )
+                        .allowMainThreadQueries()
                         .build()
                 }
             }

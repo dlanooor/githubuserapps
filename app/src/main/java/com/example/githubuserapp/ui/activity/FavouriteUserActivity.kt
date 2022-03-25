@@ -36,6 +36,7 @@ class FavouriteUserActivity : AppCompatActivity() {
             }
         }
 
+
         adapter = FavouriteUserAdapter()
         binding.apply {
             rvFavouriteUsers.layoutManager = GridLayoutManager(this@FavouriteUserActivity, 2)

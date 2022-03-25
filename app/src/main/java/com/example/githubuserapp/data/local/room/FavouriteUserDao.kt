@@ -12,6 +12,9 @@ interface FavouriteUserDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insertFavouriteUser(favouriteUser: FavouriteUserEntity)
 
+    @Query("SELECT EXISTS(SELECT * FROM favouriteuserentity WHERE username = :userLogin)")
+    fun checkFavourite(userLogin: String) : Boolean
+
     @Delete
     fun deleteFavouriteUser(favouriteUser: FavouriteUserEntity)
 }

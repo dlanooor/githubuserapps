@@ -17,11 +17,14 @@ class FavouriteUserRepository(application: Application) {
         mFavouriteUserDao = db.favouriteUserDao()
     }
 
-    fun getFavouriteUsers() : LiveData<List<FavouriteUserEntity>> = mFavouriteUserDao.getFavouriteUser()
+    fun getFavouriteUsers(): LiveData<List<FavouriteUserEntity>> =
+        mFavouriteUserDao.getFavouriteUser()
 
     fun insert(favouriteUser: FavouriteUserEntity) {
         executorService.execute { mFavouriteUserDao.insertFavouriteUser(favouriteUser) }
     }
+
+    fun check(username: String) : Boolean = mFavouriteUserDao.checkFavourite(username)
 
     fun delete(favouriteUser: FavouriteUserEntity) {
         executorService.execute { mFavouriteUserDao.deleteFavouriteUser(favouriteUser) }
