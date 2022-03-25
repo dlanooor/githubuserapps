@@ -48,6 +48,7 @@ class MainActivity : AppCompatActivity() {
         mainViewModel.isLoading.observe(this) {
             showLoading(it)
         }
+
         mainViewModel.getThemeSettings().observe(this) { isDarkModeActive: Boolean ->
             if (isDarkModeActive) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
@@ -114,7 +115,8 @@ class MainActivity : AppCompatActivity() {
             listUserAdapter.setOnItemClickCallback(object : ListUserAdapter.OnItemClickCallback {
                 override fun onItemClicked(data: ItemsItem) {
                     val intentToDetail = Intent(this@MainActivity, DetailUserActivity::class.java)
-                    intentToDetail.putExtra("DATA", data)
+                    intentToDetail.putExtra("DATA", data.login.toString())
+//                    intentToDetail.putExtra("DATA", data)
                     startActivity(intentToDetail)
                 }
             })

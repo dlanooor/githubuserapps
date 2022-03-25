@@ -8,8 +8,11 @@ import android.view.MenuItem
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.githubuserapp.R
+import com.example.githubuserapp.data.local.entity.FavouriteUserEntity
+import com.example.githubuserapp.data.remote.pojo.ItemsItem
 import com.example.githubuserapp.databinding.ActivityFavouriteUserBinding
 import com.example.githubuserapp.ui.adapter.FavouriteUserAdapter
+import com.example.githubuserapp.ui.adapter.ListUserAdapter
 import com.example.githubuserapp.ui.viewmodel.FavouriteUserViewModel
 import com.example.githubuserapp.ui.viewmodel.ViewModelRoomFactory
 
@@ -17,7 +20,6 @@ class FavouriteUserActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityFavouriteUserBinding
     private lateinit var favouriteUserViewModel: FavouriteUserViewModel
-
     private lateinit var adapter: FavouriteUserAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,6 +43,13 @@ class FavouriteUserActivity : AppCompatActivity() {
             rvFavouriteUsers.adapter = adapter
         }
 
+        adapter.setOnItemClickCallback(object : FavouriteUserAdapter.OnItemClickCallback {
+            override fun onItemClicked(favouriteUserEntity: FavouriteUserEntity) {
+                val intentToDetail = Intent(this@FavouriteUserActivity, DetailUserActivity::class.java)
+                intentToDetail.putExtra("DATA", favouriteUserEntity.username.toString())
+                startActivity(intentToDetail)
+            }
+        })
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

@@ -2,23 +2,23 @@ package com.example.githubuserapp.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.githubuserapp.data.local.entity.FavouriteUserEntity
 import com.example.githubuserapp.databinding.ItemRowUserBinding
-import com.example.githubuserapp.other.FavouriteUserDiffCallback
 
 class FavouriteUserAdapter : RecyclerView.Adapter<FavouriteUserAdapter.FavouriteUserViewHolder>() {
     private val listFavouriteUser = ArrayList<FavouriteUserEntity>()
+    private lateinit var onItemClickCallback: OnItemClickCallback
+
+    fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
+        this.onItemClickCallback = onItemClickCallback
+    }
 
     fun setListFavouriteUser(listFavouriteUser: List<FavouriteUserEntity>) {
-        println(listFavouriteUser)
-        val diffCallback = FavouriteUserDiffCallback(this.listFavouriteUser, listFavouriteUser)
         this.listFavouriteUser.clear()
         this.listFavouriteUser.addAll(listFavouriteUser)
         notifyDataSetChanged()
-//        diffResult.dispatchUpdatesTo(this)
     }
 
     override fun onCreateViewHolder(
@@ -34,6 +34,7 @@ class FavouriteUserAdapter : RecyclerView.Adapter<FavouriteUserAdapter.Favourite
         position: Int
     ) {
         holder.bind(listFavouriteUser[position])
+        holder.itemView.setOnClickListener { onItemClickCallback.onItemClicked(listFavouriteUser[holder.adapterPosition]) }
     }
 
     override fun getItemCount(): Int {
@@ -47,6 +48,10 @@ class FavouriteUserAdapter : RecyclerView.Adapter<FavouriteUserAdapter.Favourite
                 Glide.with(itemView.context).load(favouriteUserEntity.avatarUrl).into(imItemPhoto)
             }
         }
+    }
+
+    interface OnItemClickCallback {
+        fun onItemClicked(favouriteUserEntity: FavouriteUserEntity)
     }
 
 }

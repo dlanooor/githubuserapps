@@ -42,12 +42,14 @@ class DetailUserActivity : AppCompatActivity() {
 
         supportActionBar?.title = "User Detail"
 
-        val data = intent.getParcelableExtra<ItemsItem>(DATA)
-        Log.d("Detail Data", data?.login.toString())
-
+//        val data = intent.getString<ItemsItem>(DATA)
+        val data = intent.getStringExtra(DATA)
+//        Log.d("Detail Data", data?.login.toString())
+        Log.d("Detail Data", data.toString())
         // sectionPager
         val sectionsPagerAdapter = SectionsPagerAdapter(this)
-        sectionsPagerAdapter.username = data?.login.toString().trim()
+//        sectionsPagerAdapter.username = data?.login.toString().trim()
+        sectionsPagerAdapter.username = data.toString().trim()
         val viewPager: ViewPager2 = binding!!.viewPager
         viewPager.adapter = sectionsPagerAdapter
         val tabs: TabLayout = binding?.tabs!!
@@ -59,7 +61,8 @@ class DetailUserActivity : AppCompatActivity() {
 
         // viewModel
         detailViewModel = obtainViewModel(this@DetailUserActivity)
-        detailViewModel.findUserDetail(data?.login.toString().trim())
+//        detailViewModel.findUserDetail(data?.login.toString().trim())
+        detailViewModel.findUserDetail(data.toString().trim())
         detailViewModel.isLoading.observe(this) { showLoading(it) }
         detailViewModel.userDetail.observe(this) { userDetail ->
             setUserDetail(userDetail)
@@ -170,8 +173,6 @@ class DetailUserActivity : AppCompatActivity() {
     companion object {
         private const val DATA = "DATA"
         const val EXTRA_USER = "extra_user"
-        const val ALERT_DIALOG_CLOSE = 10
-        const val ALERT_DIALOG_DELETE = 20
 
         @StringRes
         private val TAB_TITLES = intArrayOf(
