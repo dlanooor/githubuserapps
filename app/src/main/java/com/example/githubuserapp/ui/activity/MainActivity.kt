@@ -38,17 +38,7 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.title = "Github User's Search"
 
         val pref = SettingPreferences.getInstance(dataStore)
-        mainViewModel = ViewModelProvider(this, ViewModelFactory(pref)).get(
-            MainViewModel::class.java
-        )
-
-        mainViewModel.usersData.observe(this) { usersData ->
-            showRecyclerList(usersData)
-        }
-        mainViewModel.isLoading.observe(this) {
-            showLoading(it)
-        }
-
+        mainViewModel = ViewModelProvider(this, ViewModelFactory(pref))[MainViewModel::class.java]
         mainViewModel.getThemeSettings().observe(this) { isDarkModeActive: Boolean ->
             if (isDarkModeActive) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
@@ -56,6 +46,13 @@ class MainActivity : AppCompatActivity() {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
             }
         }
+        mainViewModel.usersData.observe(this) { usersData ->
+            showRecyclerList(usersData)
+        }
+        mainViewModel.isLoading.observe(this) {
+            showLoading(it)
+        }
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -83,18 +80,18 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
+        return when (item.itemId) {
             R.id.menu_favourite -> {
                 val i = Intent(this, FavouriteUserActivity::class.java)
                 startActivity(i)
-                return true
+                true
             }
             R.id.menu_settings -> {
                 val i = Intent(this, ConfigurationActivity::class.java)
                 startActivity(i)
-                return true
+                true
             }
-            else -> return true
+            else -> true
         }
     }
 
@@ -116,7 +113,6 @@ class MainActivity : AppCompatActivity() {
                 override fun onItemClicked(data: ItemsItem) {
                     val intentToDetail = Intent(this@MainActivity, DetailUserActivity::class.java)
                     intentToDetail.putExtra("DATA", data.login.toString())
-//                    intentToDetail.putExtra("DATA", data)
                     startActivity(intentToDetail)
                 }
             })
@@ -125,10 +121,10 @@ class MainActivity : AppCompatActivity() {
 
     private fun showLoading(isLoading: Boolean) {
         binding.progressBar.apply {
-            if (isLoading) {
-                visibility = View.VISIBLE
+            visibility = if (isLoading) {
+                View.VISIBLE
             } else {
-                visibility = View.GONE
+                View.GONE
             }
         }
     }

@@ -12,14 +12,15 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class DetailViewModel(application: Application): ViewModel() {
+class DetailViewModel(application: Application) : ViewModel() {
     private val _userDetail = MutableLiveData<GithubDetailResponse>()
     val userDetail: LiveData<GithubDetailResponse> = _userDetail
 
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
 
-    private val mFavouriteUserRepository: FavouriteUserRepository = FavouriteUserRepository(application)
+    private val mFavouriteUserRepository: FavouriteUserRepository =
+        FavouriteUserRepository(application)
 
     fun insert(favouriteUser: FavouriteUserEntity) {
         mFavouriteUserRepository.insert(favouriteUser)
@@ -42,8 +43,7 @@ class DetailViewModel(application: Application): ViewModel() {
                 _isLoading.value = false
                 if (response.isSuccessful) {
                     _userDetail.value = response.body()
-                }
-                else {
+                } else {
                     Log.e(ContentValues.TAG, "onFailure : ${response.message()}")
                 }
             }

@@ -17,7 +17,6 @@ import com.example.githubuserapp.data.local.entity.FavouriteUserEntity
 import com.example.githubuserapp.ui.adapter.SectionsPagerAdapter
 import com.example.githubuserapp.databinding.ActivityDetailUserBinding
 import com.example.githubuserapp.data.remote.pojo.GithubDetailResponse
-import com.example.githubuserapp.data.remote.pojo.ItemsItem
 import com.example.githubuserapp.ui.viewmodel.DetailViewModel
 import com.example.githubuserapp.ui.viewmodel.ViewModelRoomFactory
 import com.google.android.material.tabs.TabLayout
@@ -29,7 +28,6 @@ class DetailUserActivity : AppCompatActivity() {
     private val binding get() = _activityDetailUserBinding
     private lateinit var detailViewModel: DetailViewModel
 
-    private var isFavourite = false
     private var favouriteUser: FavouriteUserEntity? = null
 
     private lateinit var username: String

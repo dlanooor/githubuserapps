@@ -4,7 +4,8 @@ import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 
-class ViewModelRoomFactory private constructor(private val mApplication: Application) : ViewModelProvider.NewInstanceFactory() {
+class ViewModelRoomFactory private constructor(private val mApplication: Application) :
+    ViewModelProvider.NewInstanceFactory() {
     companion object {
         @Volatile
         private var INSTANCE: ViewModelRoomFactory? = null
@@ -24,8 +25,7 @@ class ViewModelRoomFactory private constructor(private val mApplication: Applica
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(DetailViewModel::class.java)) {
             return DetailViewModel(mApplication) as T
-        }
-        else if (modelClass.isAssignableFrom(FavouriteUserViewModel::class.java)) {
+        } else if (modelClass.isAssignableFrom(FavouriteUserViewModel::class.java)) {
             return FavouriteUserViewModel(mApplication) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")

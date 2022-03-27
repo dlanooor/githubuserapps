@@ -9,10 +9,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.githubuserapp.R
 import com.example.githubuserapp.data.local.entity.FavouriteUserEntity
-import com.example.githubuserapp.data.remote.pojo.ItemsItem
 import com.example.githubuserapp.databinding.ActivityFavouriteUserBinding
 import com.example.githubuserapp.ui.adapter.FavouriteUserAdapter
-import com.example.githubuserapp.ui.adapter.ListUserAdapter
 import com.example.githubuserapp.ui.viewmodel.FavouriteUserViewModel
 import com.example.githubuserapp.ui.viewmodel.ViewModelRoomFactory
 
@@ -28,7 +26,6 @@ class FavouriteUserActivity : AppCompatActivity() {
         setContentView(binding.root)
         supportActionBar?.title = "Favourite User"
 
-        //viewModel
         favouriteUserViewModel = obtainViewModel(this@FavouriteUserActivity)
         favouriteUserViewModel.getFavouriteUsers().observe(this) { favouriteUserList ->
             if (favouriteUserList != null) {
@@ -46,8 +43,9 @@ class FavouriteUserActivity : AppCompatActivity() {
 
         adapter.setOnItemClickCallback(object : FavouriteUserAdapter.OnItemClickCallback {
             override fun onItemClicked(favouriteUserEntity: FavouriteUserEntity) {
-                val intentToDetail = Intent(this@FavouriteUserActivity, DetailUserActivity::class.java)
-                intentToDetail.putExtra("DATA", favouriteUserEntity.username.toString())
+                val intentToDetail =
+                    Intent(this@FavouriteUserActivity, DetailUserActivity::class.java)
+                intentToDetail.putExtra("DATA", favouriteUserEntity.username)
                 startActivity(intentToDetail)
             }
         })
@@ -62,18 +60,18 @@ class FavouriteUserActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
+        return when (item.itemId) {
             R.id.menu_settings -> {
                 val i = Intent(this, ConfigurationActivity::class.java)
                 startActivity(i)
-                return true
+                true
             }
-            else -> return true
+            else -> true
         }
     }
 
     private fun obtainViewModel(activity: AppCompatActivity): FavouriteUserViewModel {
         val factory = ViewModelRoomFactory.getInstance(activity.application)
-        return ViewModelProvider(activity, factory).get(FavouriteUserViewModel::class.java)
+        return ViewModelProvider(activity, factory)[FavouriteUserViewModel::class.java]
     }
 }

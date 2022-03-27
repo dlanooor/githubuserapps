@@ -6,11 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ProgressBar
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.example.githubuserapp.R
 import com.example.githubuserapp.ui.adapter.ListFollowingFollowersAdapter
 import com.example.githubuserapp.data.remote.pojo.GithubDetailFollowingFollowersResponseItem
 import com.example.githubuserapp.databinding.FragmentFollowersBinding

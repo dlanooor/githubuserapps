@@ -41,7 +41,8 @@ class FavouriteUserAdapter : RecyclerView.Adapter<FavouriteUserAdapter.Favourite
         return listFavouriteUser.size
     }
 
-    inner class FavouriteUserViewHolder(private val binding: ItemRowUserBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class FavouriteUserViewHolder(private val binding: ItemRowUserBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(favouriteUserEntity: FavouriteUserEntity) {
             with(binding) {
                 tvItemUsername.text = favouriteUserEntity.username

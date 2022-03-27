@@ -17,4 +17,6 @@
     <string name="content_tab_text">This is Tab %1$d</string>
     <string name="favourite">Favourite</string>
     <string name="dark_mode">Dark Mode</string>
+    <string name="loved_button">loved_button</string>
+    <string name="unloved_button">unloved_button</string>
 </resources>

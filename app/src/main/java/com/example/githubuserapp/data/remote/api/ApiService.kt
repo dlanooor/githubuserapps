@@ -11,19 +11,16 @@ interface ApiService {
     ): Call<GithubResponse>
 
     @GET("users/{username}")
-    @Headers("Authorization: token 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")
     fun getUserDetail(
         @Path("username") username: String
     ): Call<GithubDetailResponse>
 
     @GET("users/{username}/followers")
-    @Headers("Authorization: token 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")
     fun getUserDetailFollowers(
         @Path("username") username: String
     ): Call<List<GithubDetailFollowingFollowersResponseItem>>
 
     @GET("users/{username}/following")
-    @Headers("Authorization: token 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")
     fun getUserDetailFollowing(
         @Path("username") username: String
     ): Call<List<GithubDetailFollowingFollowersResponseItem>>

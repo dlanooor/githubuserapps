@@ -12,7 +12,7 @@ import com.example.githubuserapp.ui.viewmodel.ViewModelFactory
 
 class ConfigurationActivity : AppCompatActivity() {
     private lateinit var binding: ActivityConfigurationBinding
-    val pref = SettingPreferences.getInstance(dataStore)
+    private val pref = SettingPreferences.getInstance(dataStore)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,9 +23,7 @@ class ConfigurationActivity : AppCompatActivity() {
 
         val switchTheme =  binding.switchTheme
 
-        val configurationViewModel = ViewModelProvider(this, ViewModelFactory(pref)).get(
-            ConfigurationViewModel::class.java
-        )
+        val configurationViewModel = ViewModelProvider(this, ViewModelFactory(pref))[ConfigurationViewModel::class.java]
 
         configurationViewModel.getThemeSettings().observe(this) { isDarkModeActive: Boolean ->
             if (isDarkModeActive) {

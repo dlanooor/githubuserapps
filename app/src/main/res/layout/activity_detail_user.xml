@@ -139,6 +139,7 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_icons_love_24"
                 android:background="@android:color/transparent"
+                android:contentDescription="@string/loved_button"
                 app:layout_constraintBottom_toBottomOf="@+id/im_item_photo_detail"
                 app:layout_constraintStart_toEndOf="@+id/im_item_photo_detail"
                 app:layout_constraintTop_toBottomOf="@+id/im_item_photo_detail" />
@@ -148,6 +149,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:visibility="invisible"
+                android:contentDescription="@string/unloved_button"
                 android:src="@drawable/ic_icons_love_outline_24"
                 android:background="@android:color/transparent"
                 app:layout_constraintBottom_toBottomOf="@+id/im_item_photo_detail"
