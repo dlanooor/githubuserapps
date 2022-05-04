@@ -18,3 +18,5 @@ interface FavouriteUserDao {
     @Delete
     fun deleteFavouriteUser(favouriteUser: FavouriteUserEntity)
 }
+
+

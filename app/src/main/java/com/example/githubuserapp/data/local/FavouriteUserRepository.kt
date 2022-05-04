@@ -30,3 +30,15 @@ class FavouriteUserRepository(application: Application) {
         executorService.execute { mFavouriteUserDao.deleteFavouriteUser(favouriteUser) }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+

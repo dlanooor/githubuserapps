@@ -25,3 +25,5 @@ interface ApiService {
         @Path("username") username: String
     ): Call<List<GithubDetailFollowingFollowersResponseItem>>
 }
+
+
